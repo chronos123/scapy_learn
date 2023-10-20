@@ -1,0 +1,2 @@
+class JobPageLocators:
+    pass

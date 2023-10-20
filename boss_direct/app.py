@@ -14,6 +14,11 @@ class Headers():
     
 
 def main():
+    headers = Headers()
     _url = "https://www.zhipin.com/beijing/?sid=sem_pz_bdpc_dasou_title"
-    home_page_content = requests.get(_url).content
+    home_page_response = requests.get(_url, headers=headers)
+    home_page_response.raise_for_status()
+    home_page_content = home_page_response.content
+    # TODO: 利用page_parser进行页面解析
+    
 
