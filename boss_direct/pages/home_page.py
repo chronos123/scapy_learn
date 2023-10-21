@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from locators.page_locators import JobPageLocators
 
 
 class HomePageParser:
@@ -11,5 +12,12 @@ class HomePageParser:
         data = {
             
         }
-    
+
+    def locate_job_classifier(self):
+        class_wraper = self.page.find(JobPageLocators.job_menu_wrapper[0], JobPageLocators.job_menu_wrapper[1])
+        classes = class_wraper.findAll(JobPageLocators.job_menu)
+        for job_class in classes:
+            link = job_class.a
+        pass
+
     

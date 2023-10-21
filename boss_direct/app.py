@@ -1,5 +1,6 @@
 # 不带登录爬取信息的app, 进行求职信息的爬取和分析
 import requests
+from pages import home_page
 
 
 class Headers():
@@ -11,14 +12,19 @@ class Headers():
     def add_referer(self, referer):
         if self.headers.get("Referer", None):
             print(f"Change Referer from {self.headers['Referer']}")
+
+    def get_hearder(self):
+        return self.headers
     
 
 def main():
     headers = Headers()
     _url = "https://www.zhipin.com/beijing/?sid=sem_pz_bdpc_dasou_title"
-    home_page_response = requests.get(_url, headers=headers)
+    home_page_response = requests.get(_url, headers=headers.get_hearder())
     home_page_response.raise_for_status()
     home_page_content = home_page_response.content
     # TODO: 利用page_parser进行页面解析
-    
+    _test = home_page.HomePageParser(home_page_content).locate_job_classifier()
 
+
+main()
